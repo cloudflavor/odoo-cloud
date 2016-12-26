@@ -1,0 +1,90 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: odoo-shop
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: odoo-shop
+  namespace: odoo-shop
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: odoo
+    spec:
+      containers:
+        - name: odoo
+          image: docker.io/odoo
+          ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+  labels:
+    type: local
+  namespace: odoo-shop
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001
+  namespace: odoo-shop
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: /data/pv0001/
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: odoo-db
+  namespace: odoo-shop
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: odoo-db
+    spec:
+      containers:
+        - name: odoo-db
+          image: docker.io/odoo
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+            volumeMounts:
+              - name: postgresdata
+                mountPath: /usr/local/var/postgres
+      volumes:
+        - name: postgresdata
+          persistenVolumeClaim:
+            claimName: postgres-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: odoo-db
+  namespace: odoo-shop
+spec:
+  ports:
+    - name: odoo-db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+  selector:
+    name: odoo-db

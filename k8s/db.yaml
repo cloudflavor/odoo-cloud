@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: odoo-db
+  namespace: odoo-shop
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: odoo-db
+    spec:
+      containers:
+      - name: odoo-db
+        image: docker.io/odoo
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432

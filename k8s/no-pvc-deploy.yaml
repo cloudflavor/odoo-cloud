@@ -1,0 +1,70 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: odoo-shop
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: odoo
+  namespace: odoo-shop
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: odoo
+    spec:
+      containers:
+        - name: odoo
+          image: docker.io/odoo
+          ports:
+          - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: odoo-db
+  namespace: odoo-shop
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: odoo-db
+    spec:
+      containers:
+      - name: odoo-db
+        image: docker.io/postgres
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: odoo-db
+  namespace: odoo-shop
+spec:
+  ports:
+    - name: odoo-db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+  selector:
+    name: odoo-db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: odoo
+  namespace: odoo-shop
+spec:
+  ports:
+  - name: odoo
+    protocol: TCP
+    port: 8069
+    targetPort: 8069
+  selector:
+    name: odoo
