@@ -54,7 +54,7 @@ spec:
   selector:
     app: odoo-shop
     tier: frontend
-  type: NodePort
+  nodePort: 8069
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
