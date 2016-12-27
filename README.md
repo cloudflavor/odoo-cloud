@@ -77,7 +77,7 @@ And now you can start hacking on your e-shop!
 
 #### Persistent data
 Your changes and data persist between restarts. `minikube stop && minikube start`.
-This is because the PVs are mounted in /data which is a folder that minikube keeps.
+This is because the PVs are mounted in `/data` which is a folder that [minikube keeps](https://github.com/kubernetes/minikube#persistent-volumes).
 If you want to eliminate them you have to do `minikube delete` and start your cluster back up.  
 
 ![persistent](assets/odoo_persistent.png)
