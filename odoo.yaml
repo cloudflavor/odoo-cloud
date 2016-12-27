@@ -79,7 +79,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: codeflavor/odoo-docker:latest
+        - image: odoo:10.0
           name: odoo
           env:
           - name: HOST
@@ -88,6 +88,9 @@ spec:
             value: odoo
           - name: PASSWORD
             value: password
+          securityContext:
+            privileged: true
+            runAsUser: 0
           ports:
             - containerPort: 8069
               name: odoo

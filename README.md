@@ -6,6 +6,8 @@ This repository is a showcase deployment of Odoo on a Kubernetes cluster using
 [minikube](https://github.com/kubernetes/minikube).  
 See [repo instructions](https://github.com/kubernetes/minikube#installation) for setting up minikube.  
 
+###### Note: This example overrides the default `odoo` user specified in `docker.io/odoo:10.0` because the specified volumes for `hostPath` are mounted with root privileges and that doesn't allow a non-privileged user to write to them, making PVs not possible.
+
 #### Running the example
 Download a [release of minikube](https://github.com/kubernetes/minikube/releases).  
 
