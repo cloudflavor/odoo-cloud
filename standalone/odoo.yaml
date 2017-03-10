@@ -79,7 +79,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: codeflavor/odoo-shop:latest
+        - image: codeflavor/odoo-docker:latest
           name: odoo-shop
           env:
           - name: USER
