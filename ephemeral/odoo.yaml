@@ -1,8 +1,16 @@
 ---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: odoo
+  labels:
+    name: odoo
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: odoo-db
+  namespace: odoo
   labels:
     app: odoo-shop
 spec:
@@ -17,6 +25,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: odoo-db
+  namespace: odoo
   labels:
     app: odoo-shop
 spec:
@@ -46,6 +55,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: odoo-shop
+  namespace: odoo
   labels:
     app: odoo-shop
 spec:
@@ -60,6 +70,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: odoo-shop
+  namespace: odoo
   labels:
     app: odoo-shop
 spec:

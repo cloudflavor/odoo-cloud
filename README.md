@@ -26,7 +26,7 @@ Starting local Kubernetes cluster...
 Create the Kubernetes `service`, `pv`, `pvc` for both odoo and the postgres db
 with the `odoo.yaml` file.
 ```
-kubectl apply -f minikube/odoo.yaml
+kubectl apply -f minikube/odoo.yaml --namespace odoo
 
 service "odoo-db" created
 deployment "odoo-db" created
@@ -100,9 +100,13 @@ cluster back up.
 
 ##### Standalone example
 If you're running a standalone example of kubernetes in `dev` mode (all-in-one),
-use the example provided in `standalone/odoo.yaml`. This example uses a
+use the example provided in [standalone/odoo.yaml](./standalone). This example uses a
 different [odoo docker image](https://github.com/cloudflavor/odoo-docker) that
 fixes an environment variable which makes the database service discoverable
 without the dns addon.  
 If you are running the dns addon, then the example in `minikube/` should work
 out of the box.  
+
+##### Epehmeral
+If you're not interested in persistent data at all, and just want to deploy an
+example, you can use the [ephemeral example](./ephemeral).
