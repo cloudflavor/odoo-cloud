@@ -79,7 +79,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        - image: odoo:10.0
+        - image: odoo:latest
           name: odoo
           env:
           - name: HOST
