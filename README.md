@@ -1,19 +1,27 @@
 Odoo on kubernetes
 ---
 
-See what [Odoo](https://github.com/odoo/odoo) is.  
 This repository is a showcase deployment of Odoo on a Kubernetes cluster using
 [minikube](https://github.com/kubernetes/minikube).  
 See [repo instructions](https://github.com/kubernetes/minikube#installation) for
 setting up minikube.  
+First of all see what [Odoo](https://github.com/odoo/odoo) is.  
 
-###### Note:
-This example overrides the default `odoo` user specified in
-`docker.io/odoo:10.0` because the specified volumes for `hostPath` are mounted
-with root privileges and that doesn't allow a non-privileged user to write to
-them.
+##### Standalone example
+If you're running a standalone example of kubernetes in `dev` mode (all-in-one),
+use the example provided in [standalone/odoo.yaml](./standalone). This example uses a
+different [odoo docker image](https://github.com/cloudflavor/odoo-docker) that
+fixes an environment variable which makes the database service discoverable
+without the dns addon.  
+If you are running the dns addon, then the example in `minikube/` should work
+out of the box.  
 
-#### Running the minikube example
+##### Epehmeral
+If you're not interested in persistent data at all, and just want to deploy an
+example, you can use the [ephemeral example](./ephemeral).
+
+
+#### Minikube
 Download a [release of
 minikube](https://github.com/kubernetes/minikube/releases).  
 
@@ -24,9 +32,9 @@ Starting local Kubernetes cluster...
 ```
 
 Create the Kubernetes `service`, `pv`, `pvc` for both odoo and the postgres db
-with the `odoo.yaml` file.
+with the `odoo.yaml` file. This will also create a namespace for `odoo`.
 ```
-kubectl apply -f minikube/odoo.yaml --namespace odoo
+kubectl apply -f minikube/odoo.yaml
 
 service "odoo-db" created
 deployment "odoo-db" created
@@ -97,16 +105,3 @@ you want to eliminate them you have to do `minikube delete` and start your
 cluster back up.  
 
 ![persistent](assets/odoo_persistent.png)
-
-##### Standalone example
-If you're running a standalone example of kubernetes in `dev` mode (all-in-one),
-use the example provided in [standalone/odoo.yaml](./standalone). This example uses a
-different [odoo docker image](https://github.com/cloudflavor/odoo-docker) that
-fixes an environment variable which makes the database service discoverable
-without the dns addon.  
-If you are running the dns addon, then the example in `minikube/` should work
-out of the box.  
-
-##### Epehmeral
-If you're not interested in persistent data at all, and just want to deploy an
-example, you can use the [ephemeral example](./ephemeral).
