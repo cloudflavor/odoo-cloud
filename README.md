@@ -1,6 +1,12 @@
 Odoo on kubernetes
 ---
 
+NOTE: THIS REPOSITORY IS NOT FOR RUNNING IN PRODUCTION. IT'S A SHOWCASE SETUP 
+FOR RUNNING A SIMPLE APPLICATION ATOP OF KUBERNETES. IF YOU WAN TO USE A 
+PRODUCTION ODOO SETUP, USE 
+[THE STABLE HELM CHART](https://github.com/kubernetes/charts/tree/master/stable/odoo).
+WHICH FEATURES A COMPREHENSIVE WAY OF CONFIGURING AND RUNNING ODOO.
+
 This repository is a showcase deployment of Odoo on a Kubernetes cluster using
 [minikube](https://github.com/kubernetes/minikube).  
 See [repo instructions](https://github.com/kubernetes/minikube#installation) for
