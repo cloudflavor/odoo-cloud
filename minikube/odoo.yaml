@@ -145,6 +145,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: odoo-pvc
+  namespace: odoo
   labels:
     app: odoo-shop
 spec:
@@ -158,6 +159,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: odoo-db-pvc
+  namespace: odoo
   labels:
     app: odoo-shop
 spec:
