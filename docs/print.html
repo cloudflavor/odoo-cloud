@@ -3,7 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - Odoo Cloud</title>
+        <title>Odoo Cloud</title>
+        <meta name="robots" content="noindex" />
 
 
         <!-- Custom HTML head -->
@@ -143,15 +144,25 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h1>
+<p>In order to build and deploy the kubernetes manifests for ODOO, you need to
+install <a href="https://kubectl.docs.kubernetes.io/installation/kustomize/">kustomize</a>.</p>
+<p>If you don't have a local kubernetes cluster, you can pick a way for running
+one locally from the following:</p>
+<ul>
+<li><a href="https://github.com/abiosoft/colima">Colima</a> - MacOS, Linux</li>
+<li><a href="https://docs.docker.com/desktop/">Docker</a>  - MacOS, Linux, Windows</li>
+<li><a href="https://rancher.com/products/rancher-desktop">Rancher Desktop</a> - MacOS, Linux, Windows</li>
+<li><a href="https://minikube.sigs.k8s.io/docs/start/">Minikube</a> - MacOS, Linux, Windows</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="standalone"><a class="header" href="#standalone">Standalone</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ephemeral"><a class="header" href="#ephemeral">Ephemeral</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next" href="kubernetes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -160,9 +171,6 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next" href="kubernetes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
@@ -185,6 +193,11 @@
 
         <!-- Custom JS scripts -->
 
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
 
     </body>
 </html>
